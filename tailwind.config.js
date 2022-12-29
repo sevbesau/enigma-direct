@@ -1,10 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './views/*.{pug, html}',
+    './views/**/*.{pug, html}',
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-font-inter')
+  ],
 }

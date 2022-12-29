@@ -17,8 +17,8 @@ app.use(morgan('tiny'));
 
 app.get('*', (req, res) => {
     const slug = req.url.replace(/^\//, '');
-    const url = redirects[slug];
-    res.render('index', { url });
+    const { url, files } = redirects[slug];
+    res.render('index', { url, files });
 });
 
 app.listen(process.env.PORT, () => {
