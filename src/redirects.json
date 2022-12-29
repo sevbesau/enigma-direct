@@ -1,4 +1,8 @@
 {
-  "": "https://siliconminds.be",
-  "google": "https://google.be"
+  "": {
+    "url": "https://siliconminds.be"
+  },
+  "KSC-OLVE-skivakantie": {
+    "files": ["Inschrijvingsformulier-2023.pdf", "KSC-Olve-Skivakantie.pdf"]
+  }
 }

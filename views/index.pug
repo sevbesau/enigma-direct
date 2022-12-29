@@ -6,13 +6,64 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
     title Siliconminds
     link(href="./styles/style.css", rel="stylesheet")
-  body
+  body.flex.flex-col.min-h-screen.font-inter
     include includes/header.pug
-    main 
-      a(href=url target="_blank") #{url}
+    main(class="flex flex-col space-y-16 lg:space-y-0 lg:grid lg:grid-cols-2 lg:justify-between px-4 lg:px-0 mt-16 lg:mt-64").flex-grow.container.mx-auto
+      section.space-y-4
+        h2.uppercase.font-semibold.text-gray-500.tracking-widest.ml-4 Welcome to siliconminds
+        h1(class="text-4xl sm:text-6xl").font-bold.tracking-wide.leading-4 Custom file hosting <br> powered by <br> siliconminds <br> web development
+      section
+        if url
+          h2.uppercase.font-semibold.text-gray-500.tracking-widest.ml-4.text-lg Redirecting you
+          p#message.text-2xl.mt-4 Please stand by while we redirect you.
+            span#counter.ml-2.font-boldest.text-3xl 5
+          p#tryAgain.hidden.text-2xl.mt-4 Still see this page?
+          p#tryAgain.hidden.mt-2 Click 
+            a(href=url).font-bold.text-blue-500.underline here 
+            span to load the page manually or refresh this page to try again.
+          
+        else if files
+          h2.uppercase.font-semibold.text-gray-500.tracking-widest.ml-4.text-lg Download your files
+          p#message.text-2xl.mt-4 Please stand by while we load your files.
+            span#counter.ml-2.font-boldest.text-3xl 5
+          div#fileList.hidden.mt-6
+            ul.flex.flex-col.text-left.space-y-2
+              each file in files
+                li
+                  a(href="files/"+file target="_blank").px-4.py-2.w-full.rounded-md.bg-blue-500.flex.space-x-2.items-center.font-semibold
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                    </svg>
+                    span= file.replace(/\..*$/g, '').replace(/-/g, ' ')
+            p#tryAgain.mt-24.text-lg.text-gray-400.hidden.text-left No files? Reload the page to try again or try contacting the owner of the files.
+
+        else
+          p Something went wrong... Please check the url and try again.
+          
     script.
       const url = "#{url}"
-      setTimeout(() => {
-        document.location.assign(url);
-      }, 3000)
+      const files = "#{files}"
+      const counters = document.querySelectorAll('#counter');
+      const tryAgains = document.querySelectorAll('#tryAgain');
+      const messages = document.querySelectorAll('#message');
+      const fileList = document.getElementById('fileList');
+      if (url || files) {
+        timeLeft = 5;
+        const countDown = () => {
+          if (timeLeft > 0) {
+            setTimeout(() => {
+              timeLeft--;
+              for (counter of counters) counter.innerHTML = timeLeft
+              countDown();
+            }, 1000)
+          } else {
+            for (message of messages) message.classList.toggle('hidden')
+            for (counter of counters) counter.classList.toggle('hidden')
+            for (tryAgain of tryAgains) tryAgain.classList.toggle('hidden')
+            if (url) document.location.assign(url);
+            else if (files) fileList.classList.toggle('hidden')
+          }
+        }
+        countDown(5)
+      }
     include includes/footer.pug
