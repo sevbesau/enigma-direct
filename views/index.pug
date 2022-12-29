@@ -6,21 +6,20 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
     title Siliconminds
     link(href="./styles/style.css", rel="stylesheet")
-    //- <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SYDRSMC8RT"></script>
-  <script>
+  //- <!-- Google tag (gtag.js) -->
+  script(async src="https://www.googletagmanager.com/gtag/js?id=G-SYDRSMC8RT")
+  script.
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
   
     gtag('config', 'G-SYDRSMC8RT');
-  </script>
 
   body.flex.flex-col.min-h-screen.font-inter
     include includes/header.pug
     main(class="flex flex-col space-y-16 lg:space-y-0 lg:grid lg:grid-cols-2 lg:justify-between px-4 lg:px-0 mt-16 lg:mt-64").flex-grow.container.mx-auto
       section.space-y-4
-        h2.uppercase.font-semibold.text-gray-500.tracking-widest.ml-4 Welcome to siliconminds
+        h2.uppercase.font-semibold.text-gray-500.tracking-widest.ml-4.text-lg Welcome to siliconminds
         h1(class="text-4xl sm:text-6xl").font-bold.tracking-wide.leading-4 Custom file hosting <br> powered by <br> siliconminds <br> web development
       section
         if url
