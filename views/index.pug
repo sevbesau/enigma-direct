@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
+    title Siliconminds
+    link(href="./styles/style.css", rel="stylesheet")
+  body
+    include includes/header.pug
+    main 
+      a(href=url target="_blank") #{url}
+    script.
+      const url = "#{url}"
+      setTimeout(() => {
+        document.location.assign(url);
+      }, 3000)
+    include includes/footer.pug
