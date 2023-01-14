@@ -20,7 +20,10 @@ html(lang="en")
     main(class="flex flex-col space-y-16 lg:space-y-0 lg:grid lg:grid-cols-2 lg:justify-between px-4 lg:px-0 mt-16 lg:mt-64").flex-grow.container.mx-auto
       section.space-y-4
         h2.uppercase.font-semibold.text-gray-500.tracking-widest.ml-4.text-lg Welcome to siliconminds
-        h1(class="text-4xl sm:text-6xl").font-bold.tracking-wide.leading-4 Custom file hosting <br> powered by <br> siliconminds <br> web development
+        if files
+          h1(class="text-4xl sm:text-6xl").font-bold.tracking-wide.leading-4 Custom file hosting <br> powered by <br> siliconminds <br> web development
+        else if url
+          h1(class="text-4xl sm:text-6xl").font-bold.tracking-wide.leading-4 Custom QR codes <br> powered by <br> siliconminds <br> web development
       section
         if url
           h2.uppercase.font-semibold.text-gray-500.tracking-widest.ml-4.text-lg Redirecting you
